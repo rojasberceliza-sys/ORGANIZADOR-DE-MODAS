@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLOSET LUZ - Guardarropa Digital</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff4f9;
+    color: #493342;
+}
+
+header {
+    background: linear-gradient(135deg, #e75496, #f6a5c9);
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    border-radius: 0 0 25px 25px;
+}
+
+.logo {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: white;
+    color: #df4b91;
+    display: grid;
+    place-items: center;
+    font-size: 32px;
+    margin: auto auto 10px;
+}
+
+header h1 {
+    font-size: 27px;
+}
+
+header p {
+    margin-top: 7px;
+    font-size: 13px;
+}
+
+main {
+    max-width: 480px;
+    margin: auto;
+    padding: 15px;
+    padding-bottom: 90px;
+}
+
+nav {
+    display: flex;
+    gap: 7px;
+    margin: 15px 0;
+}
+
+nav button {
+    flex: 1;
+    border: none;
+    background: white;
+    color: #d94388;
+    padding: 12px 4px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 11px;
+    box-shadow: 0 3px 10px #e8c4d5;
+}
+
+nav button:hover,
+nav button.active {
+    background: #d94388;
+    color: white;
+}
+
+section {
+    display: none;
+}
+
+section.active {
+    display: block;
+}
+
+h2 {
+    color: #d94388;
+    margin: 15px 0;
+}
+
+.inicio {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.inicio h2 {
+    margin: 5px;
+}
+
+.inicio p {
+    color: #8d7181;
+    font-size: 13px;
+    margin: 10px;
+}
+
+.contador {
+    background: #fbe0ed;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 15px;
+    color: #c5367e;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin: 7px 0 13px;
+    border: 1px solid #efc4d8;
+    border-radius: 10px;
+    outline-color: #dc4b91;
+    background: white;
+}
+
+label {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.btn {
+    width: 100%;
+    padding: 13px;
+    background: #d94388;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #b92f70;
+}
+
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.prenda {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px #e8c4d5;
+}
+
+.prenda img {
+    width: 100%;
+    height: 145px;
+    object-fit: cover;
+    background: #f8e5ee;
+}
+
+.prenda h3 {
+    font-size: 14px;
+    padding: 8px;
+}
+
+.prenda p {
+    font-size: 11px;
+    color: #a16b89;
+    padding: 0 8px 8px;
+}
+
+.acciones {
+    display: flex;
+    gap: 5px;
+    padding: 8px;
+}
+
+.acciones button {
+    flex: 1;
+    border: none;
+    padding: 8px 3px;
+    border-radius: 8px;
+    background: #f9dce9;
+    color: #c5367e;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.acciones .eliminar {
+    background: #f2eeee;
+    color: #9b5252;
+}
+
+.favorito {
+    float: right;
+    border: none;
+    background: none;
+    color: #e04a91;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 8px;
+}
+
+.outfit {
+    background: white;
+    padding: 14px;
+    border-radius: 15px;
+    margin: 12px 0;
+    box-shadow: 0 3px 12px #e8c4d5;
+}
+
+.outfit img {
+    width: 65px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 9px;
+    margin: 5px;
+}
+
+.outfit h3 {
+    color: #d94388;
+    margin-bottom: 8px;
+}
+
+.seleccion {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 9px;
+    border-radius: 10px;
+    margin: 7px 0;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.seleccion input {
+    width: auto;
+    margin: 0;
+}
+
+.seleccion img {
+    width: 40px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.vacio {
+    text-align: center;
+    padding: 25px;
+    color: #a17b90;
+    background: white;
+    border-radius: 15px;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #d94388;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">♡</div>
+    <h1>CLOSET LUZ</h1>
+    <p>MI GUARDARROPA DIGITAL</p>
+    <p>Tu estilo, tu mundo. Organiza y combina.</p>
+</header>
+
+<main>
+
+<nav>
+    <button class="active" onclick="mostrar('inicio',this)">🏠 Inicio</button>
+    <button onclick="mostrar('registro',this)">➕ Prendas</button>
+    <button onclick="mostrar('catalogo',this)">👗 Catálogo</button>
+    <button onclick="mostrar('outfits',this)">✨ Outfits</button>
+</nav>
+
+<!-- INICIO -->
+<section id="inicio" class="active">
+
+    <div class="inicio">
+        <h2>¡Bienvenida a Closet Luz!</h2>
+        <p>Organiza tu ropa y descubre nuevas combinaciones para lucir hermosa cada día.</p>
+
+        <div class="contador">
+            👗 Total de prendas: <span id="total">0</span>
+        </div>
+
+        <div class="contador">
+            ✨ Outfits creados: <span id="totalOutfits">0</span>
+        </div>
+    </div>
+
+    <h2>Mi guardarropa 💗</h2>
+    <div class="catalogo" id="inicioCatalogo"></div>
+
+</section>
+
+<!-- REGISTRO -->
+<section id="registro">
+
+    <h2>Registrar nueva prenda</h2>
+
+    <form id="formulario">
+
+        <label>Nombre de la prenda:</label>
+        <input type="text" id="nombre"
+        placeholder="Ejemplo: Blusa rosada" required>
+
+        <label>Categoría:</label>
+        <select id="categoria" required>
+            <option value="">Seleccionar categoría</option>
+            <option>Blusas</option>
+            <option>Pantalones</option>
+            <option>Vestidos</option>
+            <option>Faldas</option>
+            <option>Zapatos</option>
+            <option>Accesorios</option>
+        </select>
+
+        <label>Fotografía:</label>
+        <input type="file" id="fotografia"
+        accept="image/*">
+
+        <button class="btn" type="submit">
+            💗 Guardar prenda
+        </button>
+
+        <button class="btn" type="button"
+        style="background:#98758a"
+        onclick="cancelarEdicion()">
+            Cancelar edición
+        </button>
+
+    </form>
+
+    <p id="mensaje"></p>
+
+</section>
+
+<!-- CATALOGO -->
+<section id="catalogo">
+
+    <h2>Mi catálogo de prendas</h2>
+
+    <input type="text" id="buscar"
+    placeholder="🔎 Buscar prenda..."
+    oninput="dibujar()">
+
+    <select id="filtro" onchange="dibujar()">
+        <option value="">Todas las categorías</option>
+        <option>Blusas</option>
+        <option>Pantalones</option>
+        <option>Vestidos</option>
+        <option>Faldas</option>
+        <option>Zapatos</option>
+        <option>Accesorios</option>
+    </select>
+
+    <div class="catalogo" id="listaPrendas"></div>
+
+</section>
+
+<!-- OUTFITS -->
+<section id="outfits">
+
+    <h2>Crear combinaciones ✨</h2>
+
+    <label>Nombre de tu outfit:</label>
+    <input type="text" id="nombreOutfit"
+    placeholder="Ejemplo: Look para salir">
+
+    <p style="font-size:13px;margin:10px 0">
+        Selecciona las prendas que deseas combinar:
+    </p>
+
+    <div id="seleccionPrendas"></div>
+
+    <button class="btn" onclick="crearOutfit()">
+        ✨ Guardar mi outfit
+    </button>
+
+    <h2>Mis combinaciones</h2>
+
+    <div id="listaOutfits"></div>
+
+</section>
+
+<footer>
+    CLOSET LUZ ♡<br>
+    Tu moda, tu estilo, tu inspiración.
+</footer>
+
+</main>
+
+<script>
+
+let prendas = JSON.parse(
+    localStorage.getItem("prendasLuz") || "[]"
+);
+
+let outfits = JSON.parse(
+    localStorage.getItem("outfitsLuz") || "[]"
+);
+
+let editando = null;
+let fotoTemporal = "";
+
+function guardarDatos() {
+    localStorage.setItem("prendasLuz",
+        JSON.stringify(prendas));
+
+    localStorage.setItem("outfitsLuz",
+        JSON.stringify(outfits));
+
+    actualizar();
+}
+
+function mostrar(id, boton) {
+
+    document.querySelectorAll("section").forEach(s => {
+        s.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    document.querySelectorAll("nav button").forEach(b => {
+        b.classList.remove("active");
+    });
+
+    boton.classList.add("active");
+
+    dibujar();
+    dibujarSeleccion();
+    dibujarOutfits();
+}
+
+function actualizar() {
+    document.getElementById("total").textContent =
+        prendas.length;
+
+    document.getElementById("totalOutfits").textContent =
+        outfits.length;
+}
+
+function dibujar() {
+
+    const catalogo = document.getElementById("listaPrendas");
+    const inicio = document.getElementById("inicioCatalogo");
+
+    let busqueda = document.getElementById("buscar").value.toLowerCase();
+    let categoria = document.getElementById("filtro").value;
+
+    let filtradas = prendas.filter(p =>
+        p.nombre.toLowerCase().includes(busqueda) &&
+        (!categoria || p.categoria === categoria)
+    );
+
+    let html = "";
+
+    filtradas.forEach(p => {
+
+        html += `
+        <div class="prenda">
+
+            <img src="${p.foto || 'https://placehold.co/300x250/f8e5ee/d94388?text=Mi+prenda'}">
+
+            <button class="favorito"
+            onclick="favorito('${p.id}')">
+            ${p.favorito ? "♥" : "♡"}
+            </button>
+
+            <h3>${escapar(p.nombre)}</h3>
+
+            <p>${escapar(p.categoria)}</p>
+
+            <div class="acciones">
+                <button onclick="editar('${p.id}')">
+                    Editar
+                </button>
+
+                <button class="eliminar"
+                onclick="eliminar('${p.id}')">
+                    Eliminar
+                </button>
+            </div>
+
+        </div>`;
+    });
+
+    catalogo.innerHTML = html ||
+        '<div class="vacio">No hay prendas registradas.</div>';
+
+    inicio.innerHTML = prendas.slice(0,4).map(p => `
+        <div class="prenda">
+            <img src="${p.foto || 'https://placehold.co/300x250/f8e5ee/d94388?text=Mi+prenda'}">
+            <h3>${escapar(p.nombre)}</h3>
+            <p>${escapar(p.categoria)}</p>
+        </div>
+    `).join("") ||
+        '<div class="vacio">¡Agrega tus primeras prendas!</div>';
+
+    actualizar();
+}
+
+function escapar(texto) {
+    return String(texto).replace(/[&<>"']/g, c => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;",
+        '"':"&quot;", "'":"&#39;"
+    })[c]);
+}
+
+document.getElementById("fotografia")
+.addEventListener("change", function(e) {
+
+    const archivo = e.target.files[0];
+
+    if (!archivo) return;
+
+    if (!archivo.type.startsWith("image/")) {
+        alert("Selecciona una imagen válida.");
+        this.value = "";
+        return;
+    }
+
+    if (archivo.size > 2 * 1024 * 1024) {
+        alert("La imagen debe pesar menos de 2 MB.");
+        this.value = "";
+        return;
+    }
+
+    const lector = new FileReader();
+
+    lector.onload = function() {
+        fotoTemporal = lector.result;
+    };
+
+    lector.readAsDataURL(archivo);
+});
+
+document.getElementById("formulario")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const categoria = document.getElementById("categoria").value;
+
+    if (!nombre || !categoria) return;
+
+    if (editando !== null) {
+
+        const p = prendas.find(x => x.id === editando);
+
+        p.nombre = nombre;
+        p.categoria = categoria;
+
+        if (fotoTemporal) p.foto = fotoTemporal;
+
+        editando = null;
+
+    } else {
+
+        if (!fotoTemporal) {
+            alert("Selecciona una fotografía.");
+            return;
+        }
+
+        prendas.push({
+            id: String(Date.now()),
+            nombre,
+            categoria,
+            foto: fotoTemporal,
+            favorito: false
+        });
+    }
+
+    guardarDatos();
+
+    this.reset();
+    fotoTemporal = "";
+
+    document.getElementById("mensaje").textContent =
+        "¡Prenda guardada correctamente! 💗";
+
+    dibujar();
+    dibujarSeleccion();
+});
+
+function editar(id) {
+
+    let p = prendas.find(x => x.id === id);
+
+    document.getElementById("nombre").value = p.nombre;
+    document.getElementById("categoria").value = p.categoria;
+
+    fotoTemporal = "";
+    editando = id;
+
+    mostrar("registro",
+        document.querySelectorAll("nav button")[1]);
+}
+
+function cancelarEdicion() {
+    editando = null;
+    fotoTemporal = "";
+    document.getElementById("formulario").reset();
+}
+
+function eliminar(id) {
+
+    if (!confirm("¿Deseas eliminar esta prenda?")) return;
+
+    prendas = prendas.filter(p => p.id !== id);
+
+    outfits = outfits.map(o => ({
+        ...o,
+        prendas: o.prendas.filter(x => x !== id)
+    })).filter(o => o.prendas.length >= 2);
+
+    guardarDatos();
+    dibujar();
+    dibujarSeleccion();
+    dibujarOutfits();
+}
+
+function favorito(id) {
+
+    let p = prendas.find(x => x.id === id);
+
+    p.favorito = !p.favorito;
+
+    guardarDatos();
+    dibujar();
+}
+
+function dibujarSeleccion() {
+
+    const contenedor =
+        document.getElementById("seleccionPrendas");
+
+    contenedor.innerHTML = prendas.map(p => `
+        <label class="seleccion">
+            <input type="checkbox" value="${p.id}">
+            <img src="${p.foto || 'https://placehold.co/100x100/f8e5ee/d94388?text=Ropa'}">
+            ${escapar(p.nombre)} - ${escapar(p.categoria)}
+        </label>
+    `).join("") ||
+    '<div class="vacio">Primero registra tus prendas.</div>';
+}
+
+function crearOutfit() {
+
+    const nombre =
+        document.getElementById("nombreOutfit").value.trim()
+        || "Mi nuevo outfit";
+
+    const seleccionadas = [
+        ...document.querySelectorAll(
+            "#seleccionPrendas input:checked"
+        )
+    ].map(c => c.value);
+
+    if (seleccionadas.length < 2) {
+        alert("Selecciona al menos dos prendas.");
+        return;
+    }
+
+    outfits.push({
+        id: String(Date.now()),
+        nombre,
+        prendas: seleccionadas
+    });
+
+    guardarDatos();
+
+    document.getElementById("nombreOutfit").value = "";
+
+    dibujarOutfits();
+
+    alert("¡Tu outfit fue guardado! 💗");
+}
+
+function dibujarOutfits() {
+
+    const contenedor = document.getElementById("listaOutfits");
+
+    contenedor.innerHTML = outfits.map(o => {
+
+        let seleccion = prendas.filter(p =>
+            o.prendas.includes(p.id)
+        );
+
+        return `
+        <div class="outfit">
+
+            <h3>${escapar(o.nombre)}</h3>
+
+            ${seleccion.map(p => `
+                <img src="${p.foto || 'https://placehold.co/100x100/f8e5ee/d94388?text=Ropa'}"
+                title="${escapar(p.nombre)}">
+            `).join("")}
+
+            <p style="font-size:12px;margin:8px 0">
+                ${seleccion.map(p => escapar(p.nombre)).join(" + ")}
+            </p>
+
+            <button class="btn"
+            style="background:#98758a"
+            onclick="eliminarOutfit('${o.id}')">
+                Eliminar outfit
+            </button>
+
+        </div>`;
+    }).join("") ||
+    '<div class="vacio">Todavía no tienes outfits creados.</div>';
+}
+
+function eliminarOutfit(id) {
+
+    if (!confirm("¿Eliminar esta combinación?")) return;
+
+    outfits = outfits.filter(o => o.id !== id);
+
+    guardarDatos();
+    dibujarOutfits();
+}
+
+// INICIAR APLICACIÓN
+
+actualizar();
+dibujar();
+dibujarSeleccion();
+dibujarOutfits();
+
+</script>
+
+</body>
+</html>
